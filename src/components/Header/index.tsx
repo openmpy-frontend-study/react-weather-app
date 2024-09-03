@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Container } from "../../Container.styles";
+import CitySelect from "./CitySelect";
 
 const Header = () => {
   return (
@@ -11,6 +12,7 @@ const Header = () => {
         </Link>
         <h2>날씨 앱</h2>
       </Logo>
+      <CitySelect />
     </HeaderWrapper>
   );
 };
