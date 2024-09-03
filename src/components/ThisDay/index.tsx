@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useWeather from "../../utils/useWeather";
+import CurrentTime from "./CurrentTime";
 
 const ThisDay = () => {
   const { id } = useParams();
@@ -28,8 +29,12 @@ const ThisDay = () => {
   } else if (weatherIcon === "Thunderstorm") {
     imageSrc = "./images/weatherIcons/thunderstorm.svg";
   }
-  
-  return <></>;
+
+  return (
+    <div>
+      <CurrentTime />
+    </div>
+  );
 };
 
 export default ThisDay;
