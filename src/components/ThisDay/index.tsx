@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import useWeather from "../../utils/useWeather";
 import CurrentTime from "./CurrentTime";
+import { Bottom, ThisDayWrapper, Top } from "./style";
 
 const ThisDay = () => {
   const { id } = useParams();
   const { data, isLoading } = useWeather(id ? id : "Seoul");
 
-  const temperatur = Math.round(data?.main.temp || 0);
+  const temperature = Math.round(data?.main.temp || 0);
   const cityName = data?.name;
   const weatherIcon = data?.weather[0].main;
   const weatherId = data?.weather[0].id;
@@ -31,9 +32,27 @@ const ThisDay = () => {
   }
 
   return (
-    <div>
-      <CurrentTime />
-    </div>
+    <ThisDayWrapper>
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <>
+          <Top>
+            <div>
+              <h2>{temperature}°</h2>
+              <h3>Now</h3>
+            </div>
+            <img src={imageSrc} alt="weather-icon" />
+          </Top>
+          <Bottom>
+            <CurrentTime />
+            <div>
+              {cityName} - {data?.sys.country}
+            </div>
+          </Bottom>
+        </>
+      )}
+    </ThisDayWrapper>
   );
 };
 
